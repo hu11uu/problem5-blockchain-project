@@ -54,8 +54,11 @@ import (
 	"google.golang.org/protobuf/types/known/durationpb"
 
 	myblockchainmodulev1 "myblockchain/api/myblockchain/myblockchain/module"
+	resourcemodulev1 "myblockchain/api/myblockchain/resource/module"
 	_ "myblockchain/x/myblockchain/module" // import for side-effects
 	myblockchainmoduletypes "myblockchain/x/myblockchain/types"
+	_ "myblockchain/x/resource/module" // import for side-effects
+	resourcemoduletypes "myblockchain/x/resource/types"
 	// this line is used by starport scaffolding # stargate/app/moduleImport
 )
 
@@ -94,6 +97,7 @@ var (
 		circuittypes.ModuleName,
 		// chain modules
 		myblockchainmoduletypes.ModuleName,
+		resourcemoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/initGenesis
 	}
 
@@ -119,6 +123,7 @@ var (
 		ibcfeetypes.ModuleName,
 		// chain modules
 		myblockchainmoduletypes.ModuleName,
+		resourcemoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/beginBlockers
 	}
 
@@ -138,6 +143,7 @@ var (
 		ibcfeetypes.ModuleName,
 		// chain modules
 		myblockchainmoduletypes.ModuleName,
+		resourcemoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/endBlockers
 	}
 
@@ -296,6 +302,10 @@ var (
 			{
 				Name:   myblockchainmoduletypes.ModuleName,
 				Config: appconfig.WrapAny(&myblockchainmodulev1.Module{}),
+			},
+			{
+				Name:   resourcemoduletypes.ModuleName,
+				Config: appconfig.WrapAny(&resourcemodulev1.Module{}),
 			},
 			// this line is used by starport scaffolding # stargate/app/moduleConfig
 		},
